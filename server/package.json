@@ -1,0 +1,12 @@
+{
+  "name": "rjsdaq-server",
+  "scripts": {
+    "start": "node_modules/.bin/coffee server.coffee --nodejs"
+  },
+  "dependencies": {
+    "coffee-script": "~1.7.1",
+    "ws": "~0.4.31",
+    "guid": "0.0.12",
+    "extend": "~1.2.1"
+  }
+}

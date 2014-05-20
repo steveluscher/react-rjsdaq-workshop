@@ -143,13 +143,12 @@ Where:
 
 When a new security is listed, a message having this format will be emitted from the socket:
 
-    [ 'SecurityListed', securitySymbol, securityName, securityPrice ]
+    [ 'SecurityListed', securitySymbol, securityName ]
 
 Where:
 
 * `securitySymbol`: a three-letter lowercase string representing a listed security
 * `securityName`: a string representing the name of the security
-* `securityPrice`: an integer representing the current price of the security, in cents
 
 ### SecurityHoldingsUpdated
 

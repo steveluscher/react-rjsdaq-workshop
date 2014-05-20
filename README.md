@@ -9,6 +9,12 @@ First, we will learn what's distinctive about the React approach, and how we can
 
 If you would like to attend this workshop, and can be in Vancouver, BC, Canada on Friday, May 23rd, 2014, [sign up](http://www.polyglotconf.com/#workshop-reactjs).
 
+### Prerequisites
+
+**Materials**: Bring a laptop with Chrome and your favorite text editor. For the full experience, have Node/NPM installed.
+
+**Knowledge**: You should be familiar with HTML, and one of either Coffeescript or Javascript.
+
 ### Syllabus
 
 **Note**: This section is currently a work in progress, not necessarily reflective of the final form the workshop will take. Please subscribe to this repo for updates.

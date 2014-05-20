@@ -1,0 +1,4 @@
+[submodule "demo"]
+	path = demo
+	url = git://github.com/steveluscher/react-supervanjs-2013.git
+	branch = jsversion

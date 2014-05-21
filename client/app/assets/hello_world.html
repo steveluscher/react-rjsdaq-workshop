@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <script charset="utf-8" src="/scripts/react-with-addons.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+  <!-- OPTION 1: Pure Javascript -->
+  <!--script type="text/javascript">
+    // Define the Hello component
+    var Hello = React.createClass({
+      displayName: 'Hello',
+      render: function() {
+        // Return a descriptor here
+      }
+    });
+
+    // Render the Hello component into the DOM
+    React.renderComponent(<Hello name="World" />, document.body);
+  </script-->
+
+  <!-- OPTION 2: Javascript with JSX -->
+  <!--script charset="utf-8" src="/scripts/JSXTransformer.js" type="text/javascript"></script>
+  <script type="text/jsx">
+    /** @jsx React.DOM */
+
+    // Define the Hello component
+    var Hello = React.createClass({
+      render: function() {
+        // Return a descriptor here
+      }
+    });
+
+    // Render the Hello component into the DOM
+    React.renderComponent(<Hello name="World" />, document.body);
+  </script-->
+
+  <!-- OPTION 3: Pure Coffeescript -->
+  <!--script charset="utf-8" src="/scripts/coffee-script.js" type="text/javascript"></script>
+  <script type="text/coffeescript">
+    # Define the Hello component
+    Hello = React.createClass
+      displayName: 'Hello'
+
+      render: ->
+        # Return a descriptor here
+
+    # Render the Hello component into the DOM
+    React.renderComponent Hello(name: 'World'), document.body
+  </script-->
+
+  <!--
+    Here is the full list of lifecycle / initialization methods that you can define on React components
+
+    In Javascript:
+
+    getInitialState: function() { },
+    getDefaultProps: function() { },
+    componentWillMount: function() { },
+    componentDidMount: function() { },
+    componentWillReceiveProps: function(/* object */ nextProps) { },
+    shouldComponentUpdate: function(/* object */ nextProps, /* object */ nextState) { return true; },
+    componentWillUpdate: function(/* object */ nextProps, /* object */ nextState) { },
+    componentDidUpdate: function(/* object */ prevProps, /* object */ prevState) { },
+    componentWillUnmount: function() { },
+    render: function() { }
+
+    In Coffeescript:
+
+    getInitialState: ->
+    getDefaultProps: ->
+    componentWillMount: ->
+    componentDidMount: ->
+    componentWillReceiveProps: (nextProps) ->
+    shouldComponentUpdate: (nextProps, nextState) -> true
+    componentWillUpdate: (nextProps, nextState) ->
+    componentDidUpdate: (prevProps, prevState) ->
+    componentWillUnmount: ->
+    render: ->
+
+    -->
+</body>
+</html>

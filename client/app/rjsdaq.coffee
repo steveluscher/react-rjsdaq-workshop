@@ -13,7 +13,7 @@ unless (WebSocketImplementation = window.WebSocket or window.MozWebSocket)?
 # Socket event handlers
 handleOpen = (evt) ->
   console.debug "Socket connected", evt
-  fireEvent('connected', evt)
+  fireEvent('connect', evt)
 
   storedUserId = localStorage.getItem(TOKEN_STORAGE_KEY)
   if typeof storedUserId is 'string'
@@ -23,7 +23,7 @@ handleOpen = (evt) ->
 
 handleClose = (evt) ->
   console.debug "Socket closing", evt
-  fireEvent('disconnected', evt)
+  fireEvent('disconnect', evt)
 
 handleMessage = (evt) ->
   console.debug "Received a message", evt.data

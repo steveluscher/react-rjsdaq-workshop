@@ -1,3 +1,5 @@
+console.warn "Using the Coffeescript version of bootstrap.jsx; If you would like to use the Javascript version, simply delete app/assets/bootstrap.jsx.coffee"
+
 RJSDAQ = require 'rjsdaq'
 
 SERVER_ADDRESS = 'localhost'

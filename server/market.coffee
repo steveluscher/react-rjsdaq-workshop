@@ -1,7 +1,7 @@
 class Market
   MAX_PRICE_CHANGE = 8 # cents
-  MIN_UPDATE_INTERVAL_PER_SECURITY = 500 # ms
-  MAX_UPDATE_INTERVAL_PER_SECURITY = 3000 # ms
+  MIN_UPDATE_INTERVAL_PER_SECURITY = 1000 # ms
+  MAX_UPDATE_INTERVAL_PER_SECURITY = 10000 # ms
 
   getRandomTimeInterval = ->
     numSecurities = Object.keys(securities).length

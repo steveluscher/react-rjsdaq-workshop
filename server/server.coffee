@@ -140,7 +140,7 @@ handleSocketMessage = (message) ->
         else
           send(@userAuthToken, 'CashHoldingsUpdated', cashHoldingsAfterPurchase)
           send(@userAuthToken, 'SecurityHoldingsUpdated', symbol, securityHoldingsAfterPurchase)
-          respond(this, requestId, err, true) if requestId?
+          respond(this, requestId) if requestId?
 
     when 'Sell'
       unless assertAuthenticated(this)
@@ -168,7 +168,7 @@ handleSocketMessage = (message) ->
         else
           send(@userAuthToken, 'CashHoldingsUpdated', cashHoldingsAfterSale)
           send(@userAuthToken, 'SecurityHoldingsUpdated', symbol, securityHoldingsAfterSale)
-          respond(this, requestId, err, true) if requestId?
+          respond(this, requestId) if requestId?
 
     when 'GoPublic'
       unless assertAuthenticated(this)
@@ -195,7 +195,7 @@ handleSocketMessage = (message) ->
           respond(this, requestId, err) if requestId?
         else
           broadcast('SecurityListed', securitySymbol, securityName)
-          respond(this, requestId, err, true) if requestId?
+          respond(this, requestId) if requestId?
 
     when 'GetToken'
       unless assertUnauthenticated(this)

@@ -96,7 +96,7 @@ Where:
 
 ### Buy
 
-Use this command to buy a security, given a security symbol and a number of units. If you supply a requestId, the server will respond with an error if you had insufficient funds, or `true` if the purchase was successful.
+Use this command to buy a security, given a security symbol and a number of units. If you supply a requestId, the server will send you a response when finished. The response may include an error if you had insufficient funds.
 
 * `requestId`: (optional) an integer
 * `commandName`: (required) the string 'Buy'
@@ -106,7 +106,7 @@ Use this command to buy a security, given a security symbol and a number of unit
 
 ### Sell
 
-Use this command to sell a security, given a security symbol and a number of units. If you supply a requestId, the server will respond with `true`; sales are always successful.
+Use this command to sell a security, given a security symbol and a number of units. If you supply a requestId, the server will send you a response when the sale has been completed (sales always succeed).
 
 * `requestId`: (optional) an integer
 * `commandName`: (required) the string 'Sell'
@@ -116,7 +116,7 @@ Use this command to sell a security, given a security symbol and a number of uni
 
 ### GoPublic
 
-Use this command to list a new security, given a security symbol and name. If you supply a requestId, the server will respond with an error if the listing failed (eg. the input was invalid, or the security is a duplicate), or `true` if your IPO was successful.
+Use this command to list a new security, given a security symbol and name. If you supply a requestId, the server will send you a response when finished. The response may include an error if your IPO failed (eg. the input was invalid, or the security is a duplicate).
 
 * `requestId`: (optional) an integer
 * `commandName`: (required) the string 'GoPublic'

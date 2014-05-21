@@ -52,6 +52,7 @@ This unit will equip students to:
 * Write React using a build system
 * Build a basic React component
 * Configure and mount a React component into the DOM
+* Unmount a React component from the DOM
 * Update the ‘props’ of a mounted React component
 * Rapidly prototype, share, and collaborate on React components using JSFiddle
 * Debug a running React application with the React Developer Tools in Chrome
@@ -60,6 +61,8 @@ This unit will equip students to:
 Students will participate by:
 
 * Building a "Hello World" level component using their preferred variant of Javascript
+* Experimenting to discover the execution order of callbacks / component methods on mount, unmount, prop transitions, and state transitions.
+* Experimenting to discover in which methods it is forbidden to cause a state update
 
 #### 3. Reacting to changes in data
 

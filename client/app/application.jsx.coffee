@@ -26,7 +26,7 @@ module.exports =
       console.log 'We now hold', holdingsCents, 'cents in cash'
 
     # This method will get called when the RJSDAQ is ready to go
-    RJSDAQ.on 'ready', -> console.log 'Ready'
+    RJSDAQ.on 'ready', (seedData) -> console.log 'Ready'
 
     # The following are commands that you can issue to the server
 

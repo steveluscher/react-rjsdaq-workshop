@@ -69,7 +69,7 @@ handleToken = (err, authToken) ->
   send "AuthenticateWithToken", authToken, handleAuthentication
 
 handleAuthentication = (err, seedData) ->
-  fireEvent('ready')
+  fireEvent('ready', seedData)
 
 send = (command, data, cb) ->
   if typeof cb is 'function'

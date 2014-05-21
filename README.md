@@ -15,6 +15,17 @@ If you would like to attend this workshop, and can be in Vancouver, BC, Canada o
 
 **Knowledge**: You should be familiar with HTML, and one of either Coffeescript or Javascript.
 
+### Setting up
+
+The interface development team has produced plain HTML/CSS ready to be integrated, and the infrastructure team has set up a development environment for you. To set this up on your machine:
+
+    git checkout --recursive git@github.com:steveluscher/react-polyglot-conf-2014.git
+    cd client
+    npm install
+    npm start
+
+Open the `client` directory in your favorite editor, visit <http://localhost:3333>, and get to work!
+
 ### Syllabus
 
 **Note**: This section is currently a work in progress, not necessarily reflective of the final form the workshop will take. Please subscribe to this repo for updates.

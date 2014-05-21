@@ -68,6 +68,7 @@ Students will participate by:
 
 This unit will equip students to:
 
+* Store and update data on the client-side, using an immutable data structure
 * Construct a complex UI through the composition of many small components
 * Recognize which data should become ‘props’ of a component, and which belongs in its ‘state’
 * Perform asynchronous updates to a React component's state

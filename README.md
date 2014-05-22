@@ -28,8 +28,6 @@ Open the `client` directory in your favorite editor, visit <http://localhost:333
 
 ### Syllabus
 
-**Note**: This section is currently a work in progress, not necessarily reflective of the final form the workshop will take. Please subscribe to this repo for updates.
-
 #### 1. Why React?
 
 This unit will equip students to:

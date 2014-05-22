@@ -19,6 +19,7 @@ If you would like to attend this workshop, and can be in Vancouver, BC, Canada o
 
 The interface development team has produced plain HTML/CSS ready to be integrated, and the infrastructure team has set up a development environment for you. To set this up on your machine:
 
+    npm install -g brunch
     git clone --recursive git@github.com:steveluscher/react-polyglot-conf-2014.git
     cd react-polyglot-conf-2014
     cd client

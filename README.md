@@ -72,6 +72,7 @@ This unit will equip students to:
 * Construct a complex UI through the composition of many small components
 * Recognize which data should become ‘props’ of a component, and which belongs in its ‘state’
 * Perform asynchronous updates to a React component's state
+* Interact with the DOM using React ‘refs’
 * Leverage the ‘lifecycle’ methods that get called when a component:
   * Mounts
   * Unmounts
@@ -103,7 +104,6 @@ This unit will equip students to:
 
 * Share common component traits through mixins
 * Define and enforce component interfaces through the use of prop validation
-* Interact with the DOM using React ‘refs’
 * Communicate between components using delegation
 * Communicate between components using a message center
 

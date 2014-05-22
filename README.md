@@ -122,7 +122,7 @@ Students will participate by:
 
 * Optimizing their app from the previous section
 
-#### 7. Testing React components
+#### 7. Testing React components (optional)
 
 This unit will equip students to:
 

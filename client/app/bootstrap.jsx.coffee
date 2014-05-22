@@ -3,10 +3,12 @@ console.warn "Using the Coffeescript version of bootstrap.jsx; If you would like
 RJSDAQ = require 'rjsdaq'
 
 SERVER_ADDRESS = 'localhost'
+SERVER_PORT = 5000
+SERVER_SCHEMA = 'ws'
 
 module.exports = ->
   # Connect to the server
-  RJSDAQ.connect(SERVER_ADDRESS) # (ip, port, schema)
+  RJSDAQ.connect(SERVER_ADDRESS, SERVER_PORT, SERVER_SCHEMA)
 
   # Handle some connection events
   RJSDAQ.on 'connect', -> console.log 'Connected to server'

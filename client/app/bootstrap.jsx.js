@@ -5,11 +5,12 @@ var RJSDAQ, SERVER_ADDRESS;
 RJSDAQ = require('rjsdaq');
 
 SERVER_ADDRESS = 'localhost';
-
+SERVER_PORT = 5000;
+SERVER_SCHEMA = 'ws';
 
 module.exports = function() {
   // Connect to the server
-  RJSDAQ.connect(SERVER_ADDRESS); // (ip, port, schema)
+  RJSDAQ.connect(SERVER_ADDRESS, SERVER_PORT, SERVER_SCHEMA);
 
   // Handle some connection events
   RJSDAQ.on('connect', function() {

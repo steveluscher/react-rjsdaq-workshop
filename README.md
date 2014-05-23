@@ -17,7 +17,7 @@ If you would like to attend this workshop, and can be in Vancouver, BC, Canada o
 
 ### Setting up
 
-The interface development team has produced plain HTML/CSS ready to be integrated, and the infrastructure team has set up a development environment for you. To set this up on your machine, you need to install brunch, clone the repository, run the client and the server.
+The interface development team has produced plain HTML/CSS ready to be integrated, and the infrastructure team has set up a development environment for you. To set this up on your machine, you need to install brunch, clone the repository, and run the client:
 
     npm install -g brunch
     git clone --recursive git@github.com:steveluscher/react-polyglot-conf-2014.git
@@ -26,9 +26,9 @@ The interface development team has produced plain HTML/CSS ready to be integrate
     npm install
     npm start
 
-Open a new tab in Terminal with Command + T.
+You might also need to run the server, if a running one isn't available. Open a new terminal at the root of the repository, and run the server:
 
-    cd ../server
+    cd server
     npm install
     npm start
 

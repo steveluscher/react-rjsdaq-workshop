@@ -40,8 +40,11 @@ send = (wsOrAuthToken, command, data...) ->
       [wsOrAuthToken]
 
   for ws in sockets
-    console.log "#{getLogHeader(ws)}Sending message: #{payload}"
-    ws.send string
+    ws.send string, (err) ->
+      if err
+        console.log "#{getLogHeader(ws)}Error sending message: #{err.message}"
+      else
+        console.log "#{getLogHeader(ws)}Message sent: #{payload}"
 
 # Respond to request-response type commands
 respond = (ws, requestId, err, data...) ->

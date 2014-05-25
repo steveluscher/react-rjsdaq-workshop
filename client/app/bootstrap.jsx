@@ -1,4 +1,4 @@
-console.warn("Using the Javascript version of bootstrap.jsx; If you would like to use the Coffeescript version, simply delete app/assets/bootstrap.jsx.js");
+console.warn("Using the Javascript version of bootstrap.jsx; If you would like to use the Coffeescript version, simply delete app/assets/bootstrap.jsx");
 
 var RJSDAQ, SERVER_ADDRESS;
 

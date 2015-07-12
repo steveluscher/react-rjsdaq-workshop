@@ -2,22 +2,23 @@
   "name": "rjsdaq-client",
   "description": "A React client for a fake stock market",
   "author": "Steven Luscher",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
-    "url": "https://github.com/steveluscher/react-polyglot-conf-2014"
+    "url": "https://github.com/steveluscher/react-rjsdaq-workshop"
   },
-  "scripts": {
-    "start": "brunch watch --server",
-    "test": "brunch test"
+  "devDependencies": {
+    "babel-core": "^5.4.7",
+    "babel-eslint": "^3.1.9",
+    "babel-loader": "^5.1.2",
+    "coffee-script": "~1.9.3",
+    "coffee-loader": "~0.7.2",
+    "eslint-plugin-react": "^2.3.0",
+    "react-hot-loader": "^1.2.7",
+    "webpack": "^1.9.6",
+    "webpack-dev-server": "^1.8.2"
   },
   "dependencies": {
-    "javascript-brunch": ">= 1.0 < 1.8",
-    "css-brunch": ">= 1.0 < 1.8",
-    "uglify-js-brunch": ">= 1.0 < 1.8",
-    "clean-css-brunch": ">= 1.0 < 1.8",
-    "auto-reload-brunch": ">= 1.0 < 1.8",
-    "coffee-script-brunch": "~1.8.0",
-    "react-brunch": "~1.0.6"
+    "react": "^0.13.0"
   }
 }

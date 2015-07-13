@@ -1,5 +1,5 @@
-# Welcome to ReactJS
-## A 2014 Polyglot Conference Workshop
+# The RJSDAQ
+## A React Workshop
 
 React is a Javascript library for building user interfaces that challenges some fundamental assumptions about how user interfaces should be built. In this workshop, you will learn to "think in React," as you build an interactive, data-driven, client-server web application in the browser.
 
@@ -7,7 +7,7 @@ First, we will learn what's distinctive about the React approach, and how we can
 
 ### Sign up
 
-If you would like to attend this workshop, and can be in Vancouver, BC, Canada on Friday, May 23rd, 2014, [sign up](http://www.polyglotconf.com/#workshop-reactjs).
+If you would like to attend this workshop, and can be in Sacramento, CA on Saturday, July 18th, 2015, [sign up](https://ti.to/sacjs/reactjs-workshop).
 
 ### Prerequisites
 
@@ -17,11 +17,10 @@ If you would like to attend this workshop, and can be in Vancouver, BC, Canada o
 
 ### Setting up
 
-The interface development team has produced plain HTML/CSS ready to be integrated, and the infrastructure team has set up a development environment for you. To set this up on your machine, you need to install brunch, clone the repository, and run the client:
+The interface development team has produced plain HTML/CSS ready to be integrated, and the infrastructure team has set up a development environment for you. To set this up on your machine, you need to clone the repository, install some npm modules, and run the client:
 
-    npm install -g brunch
-    git clone --recursive git@github.com:steveluscher/react-polyglot-conf-2014.git
-    cd react-polyglot-conf-2014
+    git clone --recursive git@github.com:steveluscher/react-rjsdaq-workshop.git
+    cd react-rjsdaq-workshop
     cd client
     npm install
     npm start
@@ -32,7 +31,7 @@ You might also need to run the server, if a running one isn't available. Open a 
     npm install
     npm start
 
-Open the `client` directory in your favorite editor, visit <http://localhost:3333>, and get to work!
+Open the `client` directory in your favorite editor, visit <http://localhost:3000>, and get to work!
 
 ### Syllabus
 
@@ -143,6 +142,4 @@ Students will participate by:
 
 Steven Luscher builds web and mobile applications using HTML, CSS, Javascript, Ruby, and Objective-C. En-route to becoming a polyglot coder, he made stops along the way to pursue formal education in graphic design, mathematics, and pedagogy; experiences which have served him well in the area of web application development.
 
-In 2013, he delivered a [conference talk about React](https://github.com/steveluscher/react-supervanjs-2013) at Super VanJS. He currently works full-time developing a mammoth React-based application using Coffeescript, JSX, Node, and MongoDB.
-
-He does not work for Facebook.
+In 2013, he delivered a [conference talk about React](https://github.com/steveluscher/react-supervanjs-2013) at Super VanJS. He currently works on the Relay team at Facebook, and teaches React to new employees.

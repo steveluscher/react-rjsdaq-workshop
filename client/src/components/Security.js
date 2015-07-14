@@ -1,3 +1,4 @@
+var PriceAge = require('./PriceAge');
 var React = require('react');
 
 var PropTypes = React.PropTypes;
@@ -18,7 +19,7 @@ var Security = React.createClass({
         <h2>{this.props.name} <small>({this.props.symbol.toUpperCase()})</small></h2>
         <p className="price">{priceString}</p>
 
-        <p className="lastUpdated">Updated 36s ago</p>
+        <PriceAge price={this.props.price} />
 
         <ul className="quotes">
           <li style={{height: '59.09%'}}>42¢</li>

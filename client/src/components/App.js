@@ -2,7 +2,31 @@ var Holding = require('./Holding');
 var React = require('react');
 var Security = require('./Security');
 
+var PropTypes = React.PropTypes;
+
 var App = React.createClass({
+  propTypes: {
+    cashHoldings: PropTypes.number.isRequired,
+    securities: PropTypes.objectOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        price: PropTypes.number,
+        unitsHeld: PropTypes.number.isRequired,
+      })
+    ),
+  },
+  renderSecurity: function(symbol) {
+    var security = this.props.securities[symbol];
+    return (
+      <Security
+        key={symbol}
+        name={security.name}
+        price={security.price}
+        symbol={symbol}
+        unitsHeld={security.unitsHeld}
+      />
+    );
+  },
   render: function() {
     return (
       <div>
@@ -44,7 +68,7 @@ var App = React.createClass({
         </section>
 
         <ul id="securities">
-          <Security />
+          {Object.keys(this.props.securities).map(this.renderSecurity)}
         </ul>
       </div>
     );

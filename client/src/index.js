@@ -9,7 +9,13 @@ var SERVER_PORT = 5000;
 var rootNode;
 RJSDAQ.connect(SERVER_ADDRESS, SERVER_PORT, function(newData) {
   rootNode = rootNode || document.getElementById('root');
-  React.render(<App />, rootNode);
+  React.render(
+    <App
+      cashHoldings={newData.cashHoldings}
+      securities={newData.securities}
+    />,
+    rootNode
+  );
 });
 
 /* The following are commands that you can issue to the server

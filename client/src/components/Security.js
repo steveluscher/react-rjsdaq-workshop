@@ -1,11 +1,22 @@
 var React = require('react');
 
+var PropTypes = React.PropTypes;
+
 var Security = React.createClass({
+  propTypes: {
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number,
+    symbol: PropTypes.string.isRequired,
+    unitsHeld: PropTypes.number.isRequired,
+  },
   render: function() {
+    var priceString = this.props.price == null
+      ? '–'
+      : this.props.price + '¢';
     return (
       <li>
-        <h2>Bunnies <small>(BNY)</small></h2>
-        <p className="price">33¢</p>
+        <h2>{this.props.name} <small>({this.props.symbol.toUpperCase()})</small></h2>
+        <p className="price">{priceString}</p>
 
         <p className="lastUpdated">Updated 36s ago</p>
 

@@ -1,3 +1,4 @@
+var App = require('./components/App');
 var React = require('react');
 var RJSDAQ = require('./RJSDAQ');
 
@@ -5,8 +6,10 @@ var SERVER_ADDRESS = 'localhost';
 var SERVER_PORT = 5000;
 
 // Connect to the server
+var rootNode;
 RJSDAQ.connect(SERVER_ADDRESS, SERVER_PORT, function(newData) {
-  // This function will be called every time new data becomes available
+  rootNode = rootNode || document.getElementById('root');
+  React.render(<App />, rootNode);
 });
 
 /* The following are commands that you can issue to the server

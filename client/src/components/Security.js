@@ -10,6 +10,42 @@ var Security = React.createClass({
     symbol: PropTypes.string.isRequired,
     unitsHeld: PropTypes.number.isRequired,
   },
+  getInitialState: function() {
+    return {
+      priceHistory: this.props.price == null
+        ? []
+        : [this.props.price],
+    };
+  },
+  renderChange: function() {
+    var changeClass = 'change';
+    var changeText;
+    var priceHistory = this.state.priceHistory;
+    if (priceHistory.length < 2) {
+      changeText = '–';
+    } else {
+      var latestPrice = priceHistory[priceHistory.length - 1];
+      var previousPrice = priceHistory[priceHistory.length - 2];
+      var changePercent = (100 * ((latestPrice - previousPrice) / previousPrice));
+      var sign = changePercent < 0 ? '' : '+';
+      changeClass += changePercent < 0 ? ' decreasing' : ' increasing';
+      changeText = sign + changePercent.toFixed(1) + '%';
+    }
+    return (
+      <p className={changeClass}>
+        {changeText}
+      </p>
+    );
+  },
+  componentWillReceiveProps: function(nextProps) {
+    if (this.props.price !== nextProps.price) {
+      var newPriceHistory = [].concat(this.state.priceHistory);
+      newPriceHistory.push(nextProps.price);
+      this.setState({
+        priceHistory: newPriceHistory,
+      });
+    }
+  },
   render: function() {
     var priceString = this.props.price == null
       ? '–'
@@ -36,7 +72,7 @@ var Security = React.createClass({
 
         <section className="analytics">
           <h3>Change</h3>
-          <p className="change increasing">+10.0%</p>
+          {this.renderChange()}
 
           <h3>Trend</h3>
           <p className="trend decreasing">-36.5%</p>

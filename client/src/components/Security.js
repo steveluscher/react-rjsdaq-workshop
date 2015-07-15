@@ -3,6 +3,9 @@ var React = require('react');
 
 var PropTypes = React.PropTypes;
 
+var GRAPH_BAR_MARGIN = 5;
+var GRAPH_BAR_WIDTH = 18;
+
 var Security = React.createClass({
   propTypes: {
     name: PropTypes.string.isRequired,
@@ -15,7 +18,20 @@ var Security = React.createClass({
       priceHistory: this.props.price == null
         ? []
         : [this.props.price],
+      graphWidth: null,
     };
+  },
+  _storeGraphWidth: function() {
+    this.setState({
+      graphWidth: React.findDOMNode(this.refs.priceGraph).clientWidth,
+    });
+  },
+  componentDidMount: function() {
+    this._storeGraphWidth();
+    window.addEventListener('resize', this._storeGraphWidth);
+  },
+  componentWillUnmount: function() {
+    window.removeEventListener('resize', this._storeGraphWidth);
   },
   renderChange: function() {
     var changeClass = 'change';
@@ -37,6 +53,45 @@ var Security = React.createClass({
       </p>
     );
   },
+  renderPriceGraph: function() {
+    var pricesToDisplay;
+    if (this.state.graphWidth == null) {
+      pricesToDisplay = this.state.priceHistory;
+    } else {
+      pricesToDisplay = this.state.priceHistory.slice(
+        -Math.floor(
+          (this.state.graphWidth - GRAPH_BAR_MARGIN) / (GRAPH_BAR_WIDTH + GRAPH_BAR_MARGIN)
+        )
+      );
+    }
+    var minPrice;
+    var maxPrice;
+    pricesToDisplay.forEach(function(price) {
+      if (minPrice == null || price < minPrice) {
+        minPrice = price;
+      }
+      if (maxPrice == null || price > maxPrice) {
+        maxPrice = price;
+      }
+    });
+    var delta = maxPrice - minPrice;
+    return pricesToDisplay.map(function(price, i) {
+      var heightPercent;
+      if (delta === 0) {
+        heightPercent = 100;
+      } else {
+        heightPercent = 10;
+        heightPercent += 90 * (1 - ((maxPrice - price) / delta));
+      }
+      return (
+        <li
+          key={i}
+          style={{height: heightPercent + '%'}}>
+          {price}¢
+        </li>
+      );
+    });
+  },
   componentWillReceiveProps: function(nextProps) {
     if (this.props.price !== nextProps.price) {
       var newPriceHistory = [].concat(this.state.priceHistory);
@@ -57,17 +112,8 @@ var Security = React.createClass({
 
         <PriceAge price={this.props.price} />
 
-        <ul className="quotes">
-          <li style={{height: '59.09%'}}>42¢</li>
-          <li style={{height: '63.18%'}}>43¢</li>
-          <li style={{height: '87.72%'}}>49¢</li>
-          <li style={{height: '91.82%'}}>50¢</li>
-          <li style={{height: '95.91%'}}>51¢</li>
-          <li style={{height: '100%'}}>52¢</li>
-          <li style={{height: '63.18%'}}>43¢</li>
-          <li style={{height: '18.18%'}}>32¢</li>
-          <li style={{height: '10%'}}>30¢</li>
-          <li style={{height: '22.27%'}}>33¢</li>
+        <ul className="quotes" ref="priceGraph">
+          {this.renderPriceGraph()}
         </ul>
 
         <section className="analytics">

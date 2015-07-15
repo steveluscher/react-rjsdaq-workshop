@@ -34,6 +34,35 @@ var Security = React.createClass({
       );
     }
   },
+  renderPriceGraph: function() {
+    var minPrice;
+    var maxPrice;
+    this.state.priceHistory.forEach(function(price) {
+      if (minPrice == null || price < minPrice) {
+        minPrice = price;
+      }
+      if (maxPrice == null || price > maxPrice) {
+        maxPrice = price;
+      }
+    });
+    var delta = maxPrice - minPrice;
+    return this.state.priceHistory.map(function(price, i) {
+      var heightPercent;
+      if (delta === 0) {
+        heightPercent = 100;
+      } else {
+        heightPercent = 10;
+        heightPercent += 90 * (1 - ((maxPrice - price) / delta));
+      }
+      return (
+        <li
+          key={i}
+          style={{height: heightPercent + '%'}}>
+          {price}¢
+        </li>
+      );
+    });
+  },
   componentWillReceiveProps: function(nextProps) {
     if (this.props.price !== nextProps.price) {
       var newPriceHistory = [].concat(this.state.priceHistory);
@@ -55,16 +84,7 @@ var Security = React.createClass({
         <PriceAge price={this.props.price} />
 
         <ul className="quotes">
-          <li style={{height: '59.09%'}}>42¢</li>
-          <li style={{height: '63.18%'}}>43¢</li>
-          <li style={{height: '87.72%'}}>49¢</li>
-          <li style={{height: '91.82%'}}>50¢</li>
-          <li style={{height: '95.91%'}}>51¢</li>
-          <li style={{height: '100%'}}>52¢</li>
-          <li style={{height: '63.18%'}}>43¢</li>
-          <li style={{height: '18.18%'}}>32¢</li>
-          <li style={{height: '10%'}}>30¢</li>
-          <li style={{height: '22.27%'}}>33¢</li>
+          {this.renderPriceGraph()}
         </ul>
 
         <section className="analytics">

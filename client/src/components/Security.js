@@ -92,6 +92,28 @@ var Security = React.createClass({
       );
     });
   },
+  renderTrend: function() {
+    var trendClass = 'change';
+    var trendText;
+    if (this.state.priceHistory.length < 10) {
+      trendText = '–';
+    } else {
+      var lastNPrices = this.state.priceHistory.slice(-10);
+      var sum = lastNPrices.reduce(function(memo, price) {
+        return memo + price;
+      }, 0);
+      var movingAveragePrice = sum / 10;
+      var trendPercent = (100 * ((this.props.price - movingAveragePrice) / movingAveragePrice));
+      var sign = trendPercent < 0 ? '' : '+';
+      trendClass += trendPercent < 0 ? ' decreasing' : ' increasing';
+      trendText = sign + trendPercent.toFixed(1) + '%';
+    }
+    return (
+      <p className={trendClass}>
+        {trendText}
+      </p>
+    );
+  },
   componentWillReceiveProps: function(nextProps) {
     if (this.props.price !== nextProps.price) {
       var newPriceHistory = [].concat(this.state.priceHistory);
@@ -121,7 +143,7 @@ var Security = React.createClass({
           {this.renderChange()}
 
           <h3>Trend</h3>
-          <p className="trend decreasing">-36.5%</p>
+          {this.renderTrend()}
         </section>
       </li>
     );

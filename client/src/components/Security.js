@@ -3,6 +3,9 @@ var React = require('react');
 
 var PropTypes = React.PropTypes;
 
+var GRAPH_BAR_MARGIN = 5;
+var GRAPH_BAR_WIDTH = 18;
+
 var Security = React.createClass({
   propTypes: {
     name: PropTypes.string.isRequired,
@@ -15,29 +18,55 @@ var Security = React.createClass({
       priceHistory: this.props.price == null
         ? []
         : [this.props.price],
+      graphWidth: null,
     };
   },
+  _storeGraphWidth: function() {
+    this.setState({
+      graphWidth: React.findDOMNode(this.refs.priceGraph).clientWidth,
+    });
+  },
+  componentDidMount: function() {
+    this._storeGraphWidth();
+    window.addEventListener('resize', this._storeGraphWidth);
+  },
+  componentWillUnmount: function() {
+    window.removeEventListener('resize', this._storeGraphWidth);
+  },
   renderChange: function() {
+    var changeClass = 'change'
+    var changeText;
     var priceHistory = this.state.priceHistory;
     if (priceHistory.length < 2) {
-      return '–';
+      changeText = '–';
     } else {
       var latestPrice = priceHistory[priceHistory.length - 1];
       var previousPrice = priceHistory[priceHistory.length - 2];
       var changePercent = (100 * ((latestPrice - previousPrice) / previousPrice));
       var sign = changePercent < 0 ? '' : '+';
-      var className = 'change ' + (changePercent < 0 ? 'decreasing' : 'increasing');
-      return (
-        <p className={className}>
-          {sign + changePercent.toFixed(1)}
-        </p>
-      );
+      changeClass += changePercent < 0 ? ' decreasing' : ' increasing';
+      changeText = sign + changePercent.toFixed(1) + '%';
     }
+    return (
+      <p className={changeClass}>
+        {changeText}
+      </p>
+    );
   },
   renderPriceGraph: function() {
+    var pricesToDisplay;
+    if (this.state.graphWidth == null) {
+      pricesToDisplay = this.state.priceHistory;
+    } else {
+      pricesToDisplay = this.state.priceHistory.slice(
+        -Math.floor(
+          (this.state.graphWidth - GRAPH_BAR_MARGIN) / (GRAPH_BAR_WIDTH + GRAPH_BAR_MARGIN)
+        )
+      );
+    }
     var minPrice;
     var maxPrice;
-    this.state.priceHistory.forEach(function(price) {
+    pricesToDisplay.forEach(function(price) {
       if (minPrice == null || price < minPrice) {
         minPrice = price;
       }
@@ -46,7 +75,7 @@ var Security = React.createClass({
       }
     });
     var delta = maxPrice - minPrice;
-    return this.state.priceHistory.map(function(price, i) {
+    return pricesToDisplay.map(function(price, i) {
       var heightPercent;
       if (delta === 0) {
         heightPercent = 100;
@@ -83,7 +112,7 @@ var Security = React.createClass({
 
         <PriceAge price={this.props.price} />
 
-        <ul className="quotes">
+        <ul className="quotes" ref="priceGraph">
           {this.renderPriceGraph()}
         </ul>
 

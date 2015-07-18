@@ -31,6 +31,22 @@ var App = React.createClass({
       sortOrder: e.target.value,
     });
   },
+  renderHolding: function(symbol) {
+    var security = this.props.securities[symbol];
+    return (
+      <Holding
+        key={symbol}
+        cashHoldings={this.props.cashHoldings}
+        price={security.price}
+        symbol={symbol}
+        unitsHeld={security.unitsHeld}
+      />
+    );
+  },
+  renderHoldings: function() {
+    var securities = this.props.securities;
+    return Object.keys(this.props.securities).sort().map(this.renderHolding);
+  },
   renderSecurity: function(symbol) {
     var security = this.props.securities[symbol];
     return (
@@ -93,12 +109,18 @@ var App = React.createClass({
 
           <h2>My portfolio</h2>
 
-          <p>You have <strong>$100.00</strong> in cash reserves</p>
+          <p>
+            You have
+            {' '}
+            <strong>${(this.props.cashHoldings / 100).toFixed(2)}</strong>
+            {' '}
+            in cash reserves
+          </p>
 
           <section id="portfolio">
             <table>
               <tbody>
-                <Holding />
+                {this.renderHoldings()}
               </tbody>
             </table>
           </section>

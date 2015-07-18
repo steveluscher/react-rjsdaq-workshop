@@ -1,5 +1,6 @@
 var Holding = require('./Holding');
 var React = require('react');
+var RJSDAQ = require('../RJSDAQ');
 var Security = require('./Security');
 
 var PropTypes = React.PropTypes;
@@ -17,9 +18,49 @@ var App = React.createClass({
   },
   getInitialState: function() {
     return {
+      canSubmit: true,
+      newSecurityName: '',
+      newSecuritySymbol: '',
       sortKey: 'name',
       sortOrder: 'asc',
     };
+  },
+  canGoPublic: function () {
+    return this.newSecurityIsValid() && this.state.canSubmit;
+  },
+  _handleGoPublicClick: function (e) {
+    if (this.canGoPublic()) {
+      this.setState({
+        canSubmit: false,
+      });
+      RJSDAQ.goPublic(
+        this.state.newSecuritySymbol,
+        this.state.newSecurityName,
+        function (err) {
+          if (err) {
+            alert(err);
+          }
+          this.setState({
+            canSubmit: true,
+            newSecurityName: '',
+            newSecuritySymbol: '',
+          });
+        }.bind(this)
+      );
+    }
+  },
+  _handleNewSecurityNameChange: function (e) {
+    this.setState({
+      newSecurityName: e.target.value,
+    });
+  },
+  _handleNewSecuritySymbolChange: function (e) {
+    var value = e.target.value;
+    if (/^[A-Za-z]*$/.test(value) && value.length <= 3) {
+      this.setState({
+        newSecuritySymbol: value.toUpperCase(),
+      });
+    }
   },
   _handleSortKeyChange: function(e) {
     this.setState({
@@ -30,6 +71,12 @@ var App = React.createClass({
     this.setState({
       sortOrder: e.target.value,
     });
+  },
+  newSecurityIsValid: function () {
+    return (
+      this.state.newSecuritySymbol.length === 3 &&
+      this.state.newSecurityName.length > 1
+    );
   },
   renderHolding: function(symbol) {
     var security = this.props.securities[symbol];
@@ -129,9 +176,26 @@ var App = React.createClass({
           <p>You've earned it</p>
 
           <form id="goPublic">
-            <input id="newSecurityName" placeholder="Name (eg. Alphabet soup)" type="text" />
-            <input id="newSecuritySymbol" placeholder="Symbol (eg. ABC)" type="text" />
-            <input disabled="disabled" type="submit" value="Go public!" />
+            <input
+              id="newSecurityName"
+              onChange={this._handleNewSecurityNameChange}
+              placeholder="Name (eg. Alphabet soup)"
+              type="text"
+              value={this.state.newSecurityName}
+            />
+            <input
+              id="newSecuritySymbol"
+              onChange={this._handleNewSecuritySymbolChange}
+              placeholder="Symbol (eg. ABC)"
+              type="text"
+              value={this.state.newSecuritySymbol}
+            />
+            <input
+              disabled={!this.canGoPublic()}
+              onClick={this._handleGoPublicClick}
+              type="submit"
+              value="Go public!"
+            />
           </form>
         </section>
 
